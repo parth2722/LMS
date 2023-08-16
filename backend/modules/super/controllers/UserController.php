@@ -1,7 +1,7 @@
 <?php
 
 namespace backend\modules\super\controllers;
-
+use yii;
 use backend\modules\super\models\User;
 use backend\modules\super\models\UserSearch;
 use yii\web\Controller;
@@ -55,8 +55,9 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -67,20 +68,17 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        $model = new User(); // Replace with your User model class
+    
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view']); // Redirect to the user listing page
         }
-
+    
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+    
 
     /**
      * Updates an existing User model.
@@ -120,12 +118,12 @@ class UserController extends Controller
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return User the loaded model
+     * @return \common\models\User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = \common\models\User::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

@@ -17,6 +17,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  * @property string|null $verification_token
+
  * @property int|null $role_id
  */
 class User extends \yii\db\ActiveRecord
@@ -35,15 +36,21 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
-            [['status', 'created_at', 'updated_at', 'role_id'], 'integer'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
+            [['username', 'password_hash', 'email'], 'required'],
+            [['username', 'password_hash', 'email'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
-            [['password_reset_token'], 'unique'],
+            [['role_id'], 'default', 'value' => 2], // Set default value to null
         ];
     }
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            $this->auth_key = 'default_auth_key';
+        }
+        return parent::beforeSave($insert);
+    }
+
 
     /**
      * {@inheritdoc}
@@ -53,16 +60,8 @@ class User extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'username' => 'Username',
-            'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'verification_token' => 'Verification Token',
-      
-            'role_id' => 'Role ID',
         ];
     }
 }
