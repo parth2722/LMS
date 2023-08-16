@@ -22,9 +22,11 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property integer $role
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $role;
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 10;
     const STATUS_ACTIVE = 10;

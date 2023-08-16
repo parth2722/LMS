@@ -35,14 +35,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'verification_token') ?>
 
-    <?php // echo $form->field($model, 'number') ?>
-
-    <?php // echo $form->field($model, 'country') ?>
-
-    <?php // echo $form->field($model, 'city') ?>
-
-    <?php // echo $form->field($model, 'address') ?>
-
     <?php // echo $form->field($model, 'role_id') ?>
 
     <div class="form-group">

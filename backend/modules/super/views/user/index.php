@@ -33,21 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             //'auth_key',
-            //'password_hash',
+            // 'password_hash',
             //'password_reset_token',
             'email:email',
             //'status',
             'created_at',
-            //'updated_at',
+            'updated_at',
             //'verification_token',
-            'number',
-            'country',
-            'city',
-            'address',
-            //'role_id',
+          
+            // 'role_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, \common\models\User $model, $key, $index, $column) {
+                'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

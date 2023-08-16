@@ -17,10 +17,6 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  * @property string|null $verification_token
- * @property string|null $number
- * @property string|null $country
- * @property string|null $city
- * @property string|null $address
  * @property int|null $role_id
  */
 class User extends \yii\db\ActiveRecord
@@ -43,9 +39,6 @@ class User extends \yii\db\ActiveRecord
             [['status', 'created_at', 'updated_at', 'role_id'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['number'], 'string', 'max' => 500],
-            [['country', 'city'], 'string', 'max' => 50],
-            [['address'], 'string', 'max' => 200],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
@@ -68,10 +61,7 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
-            'number' => 'Number',
-            'country' => 'Country',
-            'city' => 'City',
-            'address' => 'Address',
+      
             'role_id' => 'Role ID',
         ];
     }

@@ -30,14 +30,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'verification_token')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'role_id')->textInput() ?>
 
     <div class="form-group">

@@ -115,12 +115,12 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-    public function actionProduct()
-    {
-        // $model = Product::find()->ignoreSoftDelete()->all();
-        $model = Learner::find()->all();
-        return $this->render('product', ['model' => $model]);
-    }
+    // public function actionProduct()
+    // {
+    //     // $model = Product::find()->ignoreSoftDelete()->all();
+    //     $model = Product::find()->all();
+    //     return $this->render('product', ['model' => $model]);
+    // }
 
     public function actionView($id)
     {
@@ -129,27 +129,27 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new Learner();
+    // /**
+    //  * Creates a new User model.
+    //  * If creation is successful, the browser will be redirected to the 'view' page.
+    //  * @return string|\yii\web\Response
+    //  */
+    // public function actionCreate()
+    // {
+    //     $model = new Product();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
+    //     if ($this->request->isPost) {
+    //         if ($model->load($this->request->post()) && $model->save()) {
+    //             return $this->redirect(['view', 'id' => $model->id]);
+    //         }
+    //     } else {
+    //         $model->loadDefaultValues();
+    //     }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
      * Updates an existing User model.
@@ -185,52 +185,52 @@ class SiteController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the User model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Learner the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Learner::findOne(['id' => $id])) !== null) {
-            return $model;
-        }
+    // /**
+    //  * Finds the User model based on its primary key value.
+    //  * If the model is not found, a 404 HTTP exception will be thrown.
+    //  * @param int $id ID
+    //  * @return Product the loaded model
+    //  * @throws NotFoundHttpException if the model cannot be found
+    //  */
+    // protected function findModel($id)
+    // {
+    //     if (($model = Product::findOne(['id' => $id])) !== null) {
+    //         return $model;
+    //     }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
+    //     throw new NotFoundHttpException('The requested page does not exist.');
+    // }
 
-    public function actionUpload()
-    {
-        $model = new Learner();
+    // public function actionUpload()
+    // {
+    //     $model = new Product();
 
-        if (Yii::$app->request->isPost) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->upload()) {
-                // File uploaded successfully
-            }
-        }
+    //     if (Yii::$app->request->isPost) {
+    //         $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+    //         if ($model->upload()) {
+    //             // File uploaded successfully
+    //         }
+    //     }
 
-        return $this->render('upload', ['model' => $model]);
-    }
-    public function actionCreateAjax()
-    {
-        $model = new Learner();
+    //     return $this->render('upload', ['model' => $model]);
+    // }
+    // public function actionCreateAjax()
+    // {
+    //     $model = new Product();
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->upload()) {
-                if ($model->save()) {
-                    return Json::encode(['success' => true, 'message' => 'Product created successfully.']);
-                } else {
-                    return Json::encode(['success' => false, 'message' => 'Failed to save product.']);
-                }
-            } else {
-                return Json::encode(['success' => false, 'message' => 'Failed to upload image.']);
-            }
-        }
+    //     if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+    //         $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+    //         if ($model->upload()) {
+    //             if ($model->save()) {
+    //                 return Json::encode(['success' => true, 'message' => 'Product created successfully.']);
+    //             } else {
+    //                 return Json::encode(['success' => false, 'message' => 'Failed to save product.']);
+    //             }
+    //         } else {
+    //             return Json::encode(['success' => false, 'message' => 'Failed to upload image.']);
+    //         }
+    //     }
 
-        return $this->renderAjax('_form', ['model' => $model]);
-    }
+    //     return $this->renderAjax('_form', ['model' => $model]);
+    // }
 }
