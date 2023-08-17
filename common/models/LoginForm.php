@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-
 use app\components\HelloWidget;
 use Yii;
 use yii\base\Model;
@@ -17,8 +16,6 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user;
-
-
     /**
      * {@inheritdoc}
      */

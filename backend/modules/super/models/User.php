@@ -43,15 +43,6 @@ class User extends \yii\db\ActiveRecord
             [['role_id'], 'default', 'value' => 2], // Set default value to null
         ];
     }
-    public function beforeSave($insert)
-    {
-        if ($insert) {
-            $this->auth_key = 'default_auth_key';
-        }
-        return parent::beforeSave($insert);
-    }
-
-
     /**
      * {@inheritdoc}
      */

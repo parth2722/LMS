@@ -1,0 +1,28 @@
+<?php
+
+/** @var yii\web\View $this */
+/** @var yii\bootstrap5\ActiveForm $form */
+
+
+
+use yii\bootstrap5\Html;
+use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
+
+$this->title = 'Add Module';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="site-signup">
+    <div class="container">
+        <div class="col-lg-5">
+            <h1><?= Html::encode($this->title) ?></h1>
+            <?php $form = ActiveForm::begin(); ?>
+            <?= $form->field($model, 'module_name')->textInput(['autofocus' => true])->label('Module name') ?>
+            <?= $form->field($model, 'course_id')->textInput(['autofocus' => true])->label('course_id ') ?>
+            <div class="form-group">
+                <?= Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+            </div>
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+</div>

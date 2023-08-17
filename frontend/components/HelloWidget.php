@@ -11,7 +11,4 @@ class HelloWidget extends Widget
     {
         return 'Incorrect username or password.';
     }
-    
 }
-
-

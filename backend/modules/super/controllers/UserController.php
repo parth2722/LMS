@@ -1,9 +1,11 @@
 <?php
 
 namespace backend\modules\super\controllers;
+
 use yii;
 use backend\modules\super\models\User;
 use backend\modules\super\models\UserSearch;
+use frontend\models\SignupForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,17 +70,17 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User(); // Replace with your User model class
-    
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view']); // Redirect to the user listing page
+        $model = new SignupForm(); // Replace with your User model class
+
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->redirect(['index']); // Redirect to the user listing page
         }
-    
+
         return $this->render('create', [
             'model' => $model,
         ]);
     }
-    
+
 
     /**
      * Updates an existing User model.

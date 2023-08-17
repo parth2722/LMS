@@ -12,8 +12,8 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'super' =>[
-            'class'=> 'backend\modules\super\Module',
+        'super' => [
+            'class' => 'backend\modules\super\Module',
         ],
     ],
     'components' => [

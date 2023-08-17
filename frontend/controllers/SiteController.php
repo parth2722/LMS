@@ -70,7 +70,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -101,8 +100,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
     /**
      * Displays homepage.
      *
@@ -111,22 +108,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
-        
     }
-    public function actionShop()
-    {
-        return $this->render('shop');
-    }
-    public function actionWhy()
-    {
-        return $this->render('why');
-    }
-    // public function actionTestimonial()
-    // {
-    //     $model = Learner::find()->all();
-    //     return $this->render('testimonial', ['model' => $model]);
-    // }
-
     /**
      * Logs out the current user.
      *
@@ -161,56 +143,13 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-    // public function actionCreate()
-    // {
-
-    //     $model = new Learner();
-
-    //     // new record   
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['testimonial']);
-    //     }
-
-    //     return $this->render('create', ['model' => $model]);
-    // }
-    // public function actionUpdate($id)
-    // {
-    //     $model = Learner::find()->where(['id' => $id])->one();
-
-    //     // $id not found in database   
-    //     if ($model === null)
-    //         throw new NotFoundHttpException('The requested page does not exist.');
-
-    //     // update record   
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['testimonial']);
-    //     }
-
-    //     return $this->render('update', ['model' => $model]);
-    // }
-
-    // public function actionDelete($id)
-    // {
-    //     $model = Learner::findOne($id);
-
-    //     // $id not found in database   
-    //     if ($model === null)
-    //         throw new NotFoundHttpException('The requested page does not exist.');
-
-    //     // delete record   
-    //     $model->delete();
-
-    //     return $this->redirect(['testimonial']);
-    // }
-
     public function actionPjax()
     {
         $message = Yii::$app->request->post('message');
         $response = null;
-        if(!is_null($message)){
-            $response = 'Your message is: '.$message;
+        if (!is_null($message)) {
+            $response = 'Your message is: ' . $message;
         }
-        return $this->render('pjax',['response'=>$response]);
+        return $this->render('pjax', ['response' => $response]);
     }
-
 }
