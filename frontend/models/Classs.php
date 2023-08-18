@@ -17,6 +17,8 @@ use Yii;
 class Classs extends \yii\db\ActiveRecord
 {
     public $file;
+
+   
     /**
      * {@inheritdoc}
      */

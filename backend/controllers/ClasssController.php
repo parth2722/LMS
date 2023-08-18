@@ -22,9 +22,11 @@ class ClasssController extends \yii\web\Controller
 
     public function behaviors()
     {
+
         return array_merge(
             parent::behaviors(),
             [
+
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -45,6 +47,31 @@ class ClasssController extends \yii\web\Controller
         ]);
     }
 
+    // public function actionCreate()
+    // {
+    //     $model = new Classs();
+
+    //     if ($model->load(Yii::$app->request->post())) {
+    //         $imageName = $model->class_name;
+    //         $model->file = UploadedFile::getInstance($model, 'file');
+
+    //         if ($model->file) {
+    //             $model->file->saveAs('/frontend/web/uploads/' . $imageName . '.' . $model->file->extension);
+    //             $model->file_path = '' . $imageName . '.' . $model->file->extension;
+    //         }
+
+    //         $model->created_at = date('Y-m-d h:i:s');
+
+    //         if ($model->save()) {
+    //             return $this->redirect(['index', 'id' => $model->id]);
+    //         }
+    //     }
+
+    //     return $this->render('create', [
+    //         'model' => $model,
+    //     ]);
+    // }
+
     public function actionCreate()
     {
         $model = new Classs();
@@ -54,7 +81,8 @@ class ClasssController extends \yii\web\Controller
             $model->file = UploadedFile::getInstance($model, 'file');
 
             if ($model->file) {
-                $model->file->saveAs('uploads/' . $imageName . '.' . $model->file->extension);
+                $uploadPath = Yii::getAlias('@frontend/web/uploads/');
+                $model->file->saveAs($uploadPath . $imageName . '.' . $model->file->extension);
                 $model->file_path = '' . $imageName . '.' . $model->file->extension;
             }
 

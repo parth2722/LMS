@@ -4,7 +4,10 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use common\models\User;
+use frontend\models\Classs;
 use frontend\models\ContactForm;
+use frontend\models\Course;
+use frontend\models\Module;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\Learner;
 use frontend\models\ResendVerificationEmailForm;
@@ -14,6 +17,7 @@ use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -26,34 +30,19 @@ use yii\web\NotFoundHttpException;
  */
 class SiteController extends Controller
 {
+
     public function behaviors()
     {
         return [
             'access' => [
+
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'about'],
+                'only' => ['course','module','class'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['@']
                     ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['about'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -108,6 +97,38 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionCourse()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Course::find(),
+        ]);
+
+        return $this->render('course', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionModule()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Module::find(),
+        ]);
+
+        return $this->render('module', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionClass()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Classs::find(),
+        ]);
+
+        return $this->render('class', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
     /**
      * Logs out the current user.

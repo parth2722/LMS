@@ -36,14 +36,22 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            
+                "login" =>"site/login",
+                "index" =>"site/index",
+                "signup" =>"site/signup",
+                "course" =>"site/course",
+                "module" =>"site/module",
+                "class" =>"site/class",
+                
+               
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

@@ -67,8 +67,10 @@ a.desc:after {
 
 /* align the logout "link" (button in form) of the navbar */
 .navbar form > button.logout {
-    padding-top: 7px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #514f4f;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 5px;
 }
 
 @media(max-width:767px) {
@@ -83,7 +85,7 @@ a.desc:after {
 .navbar form > button.logout:focus,
 .navbar form > button.logout:hover {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(187, 84, 178, 0.952);
 }
 
 .navbar form > button.logout:focus {
