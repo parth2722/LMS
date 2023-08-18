@@ -18,7 +18,7 @@ class ClassSearch extends Classs
     {
         return [
             [['id','module_id'],'integer'], // Attribute 'id' is an integer
-            [['class_name','file'], 'string'], // Attribute 'course_name' is a string
+            [['class_name','file','file_path'], 'string'], // Attribute 'course_name' is a string
             [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'safe'], // These attributes are safe for search, use 'safe' validator
         ];
     }
@@ -51,14 +51,15 @@ class ClassSearch extends Classs
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'file' => $this->file,
+          
+            'file_path' => $this->file_path,
             'class_name' => $this->class_name,
             'module_id' => $this->module_id,
         ]);
 
         $query->andFilterWhere(['like', 'id', $this->id])
-            ->andFilterWhere(['like', 'file', $this->file])
-            ->andFilterWhere(['like', 'class_name', $this->class_name])
+          
+            ->andFilterWhere(['like', 'file_path', $this->class_name])
             ->andFilterWhere(['like', 'class_name', $this->class_name])
             ->andFilterWhere(['like', 'module_id', $this->module_id]);
      

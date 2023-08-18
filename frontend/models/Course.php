@@ -14,6 +14,7 @@ use Yii;
  */
 class Course extends \yii\db\ActiveRecord
 {
+    
     /**
      * {@inheritdoc}
      */

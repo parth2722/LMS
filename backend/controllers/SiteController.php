@@ -19,6 +19,46 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['product'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+
+                    [
+                        'actions' => ['update', 'delete', 'create', 'course', 'view',],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -42,15 +82,16 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+ 
 
     public function actionCourse()
     {
-        $model = new Course();
-
+        $model = new Course(); 
+    
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']); // Redirect to the user listing page
         }
-
+    
         return $this->render('course', [
             'model' => $model,
         ]);
@@ -89,7 +130,7 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-
+ 
 
     public function actionView($id)
     {
@@ -131,4 +172,5 @@ class SiteController extends Controller
 
         return $this->redirect(['index']);
     }
+
 }

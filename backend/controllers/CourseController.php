@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use frontend\models\Course;
+use frontend\models\CourseSearch;
 use frontend\models\UserSearch;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -32,7 +33,7 @@ class CourseController extends \yii\web\Controller
     }
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
+        $searchModel = new CourseSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

@@ -9,7 +9,7 @@ use frontend\models\Course;
 /**
  * UserSearch represents the model behind the search form of `backend\modules\super\models\User`.
  */
-class UserSearch extends Course
+class CourseSearch extends Course
 {
     /**
      * {@inheritdoc}

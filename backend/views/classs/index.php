@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 'id',
-                'file',
+            
+                'file_path',
                 'class_name',
                 'module_id',
                 [

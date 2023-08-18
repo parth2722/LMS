@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 use yii\widgets\LinkPager;
 
 /** @var yii\web\View $this */
-/** @var \frontend\models\UserSearch $searchModel */
+/** @var \frontend\models\CourseSearch $searchModel */
 
 $this->title = 'Course';
 $this->params['breadcrumbs'][] = $this->title;

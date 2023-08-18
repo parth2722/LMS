@@ -16,6 +16,7 @@ use Yii;
  */
 class Classs extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -30,12 +31,16 @@ class Classs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file', 'class_name', 'module_id'], 'required'],
+            [['file', 'file_path', 'class_name', 'module_id'], 'required'],
             [['module_id'], 'integer'],
-            [['created_at', 'update_at'], 'safe'],
-            [['file', 'class_name'], 'string', 'max' => 50],
+            [['created_at', 'updated_at'], 'safe'],
+            [['class_name'], 'string', 'max' => 50],
+            [['file'], 'file'],
+            [['file_path'], 'string', 'max' => 255], // Add validation for the new file_path column
         ];
     }
+    
+    
 
     /**
      * {@inheritdoc}
@@ -44,7 +49,8 @@ class Classs extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'file' => 'File',
+
+            'file_path' => 'file_path',
             'class_name' => 'Class Name',
             'module_id' => 'Module ID',
             'created_at' => 'Created At',

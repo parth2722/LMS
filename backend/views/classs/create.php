@@ -16,12 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-lg-5">
             <h1><?= Html::encode($this->title) ?></h1>
-            <?php $form = ActiveForm::begin(); ?>
-
-            <?= $form->field($model, 'file')->textInput(['autofocus' => true])->label('file') ?>
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
             <?= $form->field($model, 'class_name')->textInput(['autofocus' => true])->label('Class name') ?>
             <?= $form->field($model, 'module_id')->textInput(['autofocus' => true])->label('Module id') ?>
-
+            <?= $form->field($model, 'file')->fileInput() ?>
             <div class="form-group">
                 <?= Html::submitButton('Add', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>

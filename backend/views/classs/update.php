@@ -17,7 +17,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'file')->textInput(['autofocus' => true])->label('file') ?>
+       
+        <?= $form->field($model, 'file_path')->textInput(['autofocus' => true])->label('file_path') ?>
         <?= $form->field($model, 'class_name')->textInput(['autofocus' => true])->label('Class name') ?>
         <?= $form->field($model, 'module_id')->textInput(['autofocus' => true])->label('Module id') ?>
 

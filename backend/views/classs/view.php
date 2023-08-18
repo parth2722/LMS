@@ -29,9 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'id',
-                'file',
+              
+                'file_path',
                 'class_name',
                 'module_id',
+         
 
             ],
         ]) ?>

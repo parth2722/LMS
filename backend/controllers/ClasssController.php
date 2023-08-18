@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use frontend\models\Classs;
 use frontend\models\ClassSearch;
+// use GuzzleHttp\Psr7\UploadedFile;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\filters\VerbFilter;
@@ -11,10 +12,13 @@ use yii\filters\AccessControl;
 
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 
 class ClasssController extends \yii\web\Controller
 {
+
+
 
     public function behaviors()
     {
@@ -43,15 +47,32 @@ class ClasssController extends \yii\web\Controller
 
     public function actionCreate()
     {
-        $model = new Classs(); 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']); // Redirect to the user listing page
+        $model = new Classs();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $imageName = $model->class_name;
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if ($model->file) {
+                $model->file->saveAs('uploads/' . $imageName . '.' . $model->file->extension);
+                $model->file_path = '' . $imageName . '.' . $model->file->extension;
+            }
+
+            $model->created_at = date('Y-m-d h:i:s');
+
+            if ($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+
+
+
+
 
     public function actionView($id)
     {
