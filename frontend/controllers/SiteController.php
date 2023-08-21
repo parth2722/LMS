@@ -60,6 +60,10 @@ class SiteController extends Controller
             ],
         ];
     }
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 
     public function actionAbout()
     {
@@ -100,10 +104,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+
 
     public function actionCourse()
     {
@@ -123,9 +124,12 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionModule()
+    public function actionModule($id)
     {
-        $query = Module::find();
+        $query = Module::find()
+            ->select(['id', 'module_name', 'course_id'])
+            ->where(['course_id' => $id]);
+
         $pagination = new Pagination([
             'totalCount' => $query->count(),
             'pageSize' => 10,
@@ -141,9 +145,12 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionClass()
+
+    public function actionClass($id)
     {
-        $query = Classs::find();
+        $query = Classs::find()
+        ->select(['id', 'file_path','class_name', 'module_id'])
+        ->where(['module_id' => $id]);
         $pagination = new Pagination([
             'totalCount' => $query->count(),
             'pageSize' => 10,

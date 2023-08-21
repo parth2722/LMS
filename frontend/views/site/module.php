@@ -14,7 +14,7 @@ $this->title = 'Module';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <br>
-<?= Html::a('Class', ['class'], ['class' => 'btn btn-danger']) ?>
+
 
 <div class="row">
     <?php foreach ($model as $view_module) : ?>

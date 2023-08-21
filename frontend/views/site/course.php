@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <br>
-<?= Html::a('Module', ['module'], ['class' => 'btn btn-danger']) ?>
+
 
 <div class="row">
     <?php foreach ($model as $view_course) : ?>

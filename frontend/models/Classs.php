@@ -36,7 +36,7 @@ class Classs extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['file', 'file_path', 'class_name', 'module_id'], 'required'],
+            [['file_path', 'class_name', 'module_id'], 'required'],
             [['module_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['class_name'], 'string', 'max' => 50],

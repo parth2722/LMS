@@ -19,6 +19,7 @@ use yii\helpers\Url;
 
 <div class="col-md-4">
     <div class="card">
+    <a href="<?=Url::toRoute(['/class','id'=>$view_module->id])?>">
         <div class="card-header"><?= Html::encode($view_module['id']) ?></div>
 
         <h5><?= $view_module->module_name ?></h5>
@@ -26,6 +27,7 @@ use yii\helpers\Url;
         <h5><?= $view_module->course_id ?></h5>
 
         <h6><?= $view_module->created_at ?></h6>
+    </a>
     </div>
 
 </div>
