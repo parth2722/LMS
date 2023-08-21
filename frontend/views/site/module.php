@@ -1,37 +1,23 @@
 <?php
 
-use frontend\models\Module;
+use frontend\models\Course;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-use yii\data\ActiveDataProvider; // Make sure to import the ActiveDataProvider class
+use yii\data\ActiveDataProvider;
+use yii\widgets\Pjax;
+use yii\widgets\LinkPager;
 
-/** @var yii\web\View $this */
 
 $this->title = 'Module';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container">
-    <div class="user-index">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <p>
-        <?= Html::a('Class', ['class'], ['class' => 'btn btn-success']) ?>
-        </p>
+<br>
+<?= Html::a('Class', ['class'], ['class' => 'btn btn-danger']) ?>
 
-        <?php // echo $this->render('_search', ['model' => $searchModel]); 
-        ?>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-         
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                'id',
-                'module_name',
-                'course_id',
-              
-            ],
-        ]);
-        ?>
-    </div>
+<div class="row">
+    <?php foreach ($model as $view_module) : ?>
+        <?= $this->render('view_module', ['view_module' => $view_module]) ?>
+    <?php endforeach; ?>
 </div>

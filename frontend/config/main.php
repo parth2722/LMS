@@ -48,8 +48,7 @@ return [
                 "course" =>"site/course",
                 "module" =>"site/module",
                 "class" =>"site/class",
-                
-               
+                "about" =>"site/about",
             ],
         ],
     ],

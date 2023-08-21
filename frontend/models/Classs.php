@@ -18,7 +18,10 @@ class Classs extends \yii\db\ActiveRecord
 {
     public $file;
 
-   
+    public $file_type;
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -41,8 +44,9 @@ class Classs extends \yii\db\ActiveRecord
             [['file_path'], 'string', 'max' => 255], // Add validation for the new file_path column
         ];
     }
-    
-    
+
+
+
 
     /**
      * {@inheritdoc}

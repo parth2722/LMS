@@ -1,65 +1,44 @@
 <?php
 
-use frontend\models\Classs;
+use frontend\models\Course;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
+use yii\widgets\Pjax;
+use yii\widgets\LinkPager;
 
-/** @var yii\web\View $this */
 
 $this->title = 'Class';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<br>
+<?= Html::a('Home', ['index'], ['class' => 'btn btn-danger']) ?>
 
-<div class="container">
-    <div class="user-index">
-        <h1><?= Html::encode($this->title) ?></h1>
-
-        <?php
-        $dataProvider = new \yii\data\ActiveDataProvider([
-            'query' => Classs::find(), // Fetch all records from the Classs model
-        ]);
-
-        echo GridView::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'file_path',
-                'class_name',
-                'module_id',
-
-
-                [
-                    'attribute' => 'image',
-                    'format' => 'raw',
-                    'value' => function ($model) {
-                        $imageUrl = Url::to(['uploads/' . $model->file_path]); // Adjust this based on your image path
-                        return Html::img($imageUrl, ['alt' => '', 'style' => 'max-width: 100px;']);
-                    },
-                ],
-
-                // ...
-                [
-                    'attribute' => 'audio',
-                    'format' => 'raw',
-                    'value' => function ($model) {
-                        $audioUrl = Url::to(['uploads/' . $model->file_path]); // Adjust this based on your audio path
-                        return '<audio controls style="max-width: 100px;"><source src="' . $audioUrl . '" type="audio/mpeg"></audio>';
-                    },
-                ],
-                [
-                    'attribute' => 'video',
-                    'format' => 'raw',
-                    'value' => function ($model) {
-                        $videoUrl = Url::to(['uploads/' . $model->file_path]); // Adjust this based on your video path
-                        return '<video controls style="max-width: 100px;"><source src="' . $videoUrl . '" type="video/mp4"></video>';
-                    },
-                ],
-                // ...
-
-                // ...
-
-            ],
-        ]);
-        ?>
-    </div>
+<div class="row">
+    <?php foreach ($model as $view_class) : ?>
+        <?= $this->render('view_class', ['view_class' => $view_class]) ?>
+    <?php endforeach; ?>
 </div>
+
+<?php
+function getFileType($filePath)
+{
+    $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+
+    $imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    $audioExtensions = ['mp3', 'ogg', 'wav'];
+    $videoExtensions = ['mp4', 'webm', 'ogg'];
+
+    if (in_array($extension, $imageExtensions)) {
+        return 'image';
+    } elseif (in_array($extension, $audioExtensions)) {
+        return 'audio';
+    } elseif (in_array($extension, $videoExtensions)) {
+        return 'video';
+    } else {
+        return 'unknown';
+    }
+}
+?>

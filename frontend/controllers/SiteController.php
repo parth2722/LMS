@@ -18,6 +18,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -37,7 +38,7 @@ class SiteController extends Controller
             'access' => [
 
                 'class' => AccessControl::className(),
-                'only' => ['course','module','class'],
+                'only' => ['course', 'module', 'class'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -58,6 +59,11 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
     }
     public function actionSignup()
     {
@@ -101,35 +107,64 @@ class SiteController extends Controller
 
     public function actionCourse()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Course::find(),
+        $query = Course::find(); // Replace with your product query
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 10, // Adjust the page size as needed
         ]);
 
+        $model = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
         return $this->render('course', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
+            'pagination' => $pagination,
         ]);
     }
 
     public function actionModule()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Module::find(),
+        $query = Module::find();
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 10,
         ]);
+
+        $model = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
 
         return $this->render('module', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
+            'pagination' => $pagination,
         ]);
     }
+
     public function actionClass()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Classs::find(),
+        $query = Classs::find();
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 10,
         ]);
 
+        $model = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+
+        foreach ($model as $class) {
+
+            $class->file_path = 'uploads/' . $class->file_path;
+        }
+
         return $this->render('class', [
-            'dataProvider' => $dataProvider,
+            'model' => $model,
+            'pagination' => $pagination,
         ]);
     }
+
     /**
      * Logs out the current user.
      *

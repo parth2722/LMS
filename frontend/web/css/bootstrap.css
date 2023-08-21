@@ -2490,14 +2490,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-success {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  color: #0c0202;
+  background-color: #c2eeee;
+
 }
 
 .btn-success:hover {
   color: #fff;
-  background-color: #218838;
+  background-color: #054042;
   border-color: #1e7e34;
 }
 
@@ -8184,10 +8184,7 @@ button.bg-dark:focus {
   padding: 3rem !important;
 }
 
-.pt-5,
-.py-5 {
-  padding-top: 3rem !important;
-}
+
 
 .pr-5,
 .px-5 {

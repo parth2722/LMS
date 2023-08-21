@@ -20,13 +20,13 @@ use yii\helpers\Url;
   .header {
     overflow: hidden;
     background-color: #f1f1f1;
-    padding: 10px 10px;
+    padding-top: 1%;
   }
 
   .header a {
-    float: left;
+
     color: black;
-    text-align: center;
+
     padding: 12px;
     text-decoration: none;
     font-size: 18px;
@@ -57,32 +57,23 @@ use yii\helpers\Url;
 
 <body>
 
-  <div class="header" >
-    <a href="#default" class="logo">CompanyLogo</a>
+  <div class="header">
+
+    <a href="/about">
+      <img src="images/lms1.png" width="110" height="50"></a>
     <div class="header-right">
       <ul class="">
-
         <a class="" href="/">Home <span class="sr-only"></span></a>
-
-
-
         <a class="" href="<?= Url::to(['/course']) ?>">Course</a>
-
-
-
         <?php if (Yii::$app->user->isGuest) { ?>
-
           <a class="" href="<?= Url::to(['/login']) ?>">Login</a>
-
-
-
           <a class="" href="<?= Url::to(['/signup']) ?>">Signup</a>
-
-
         <?php } else {
-
           echo '<li class="user_logout">' .
             Html::beginForm(['/site/logout']);
+
+
+
           echo  Html::submitButton(
             'Logout (' . Yii::$app->user->identity->username . ')',
             ['class' => 'btn btn-link logout text-decoration-none']
