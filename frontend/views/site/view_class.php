@@ -7,7 +7,6 @@ $this->title = 'Class List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-
 <div class="col-md-4">
     <div class="card">
         <div class="card-header"><?= Html::encode($view_class['id']) ?></div>

@@ -126,6 +126,7 @@ class SiteController extends Controller
 
     public function actionModule($id)
     {
+        
         $query = Module::find()
             ->select(['id', 'module_name', 'course_id'])
             ->where(['course_id' => $id]);
@@ -151,6 +152,8 @@ class SiteController extends Controller
         $query = Classs::find()
         ->select(['id', 'file_path','class_name', 'module_id'])
         ->where(['module_id' => $id]);
+
+
         $pagination = new Pagination([
             'totalCount' => $query->count(),
             'pageSize' => 10,
@@ -182,6 +185,12 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionChange_password()
+    {
+        $model = User::find()->where(['id'=>\Yii::$app->user->getId()])->one();
+        return $this->render('change_password',['model'=>$model]);
     }
 
     /**

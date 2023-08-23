@@ -49,6 +49,7 @@ return [
                 "module" =>"site/module",
                 "class" =>"site/class",
                 "about" =>"site/about",
+                "change_password" =>"site/change_password",
             ],
         ],
     ],
