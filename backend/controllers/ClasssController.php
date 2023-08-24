@@ -110,7 +110,6 @@ class ClasssController extends \yii\web\Controller
         ]);
     }
 
-
     public function actionGetModules($courseId)
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
