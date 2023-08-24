@@ -15,6 +15,7 @@ use Yii;
  */
 class Module extends \yii\db\ActiveRecord
 {
+    public $course_name;
     /**
      * {@inheritdoc}
      */

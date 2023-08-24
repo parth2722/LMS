@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use app\components\HelloWidget;
+// use app\components\HelloWidget;
 use Yii;
 use yii\base\Model;
 
@@ -43,11 +43,10 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                // $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Incorrect username or password.');
 
-                $helloWidgetContent = HelloWidget::widget();
 
-                $this->addError($attribute, '' . $helloWidgetContent);
+        
             }
         }
     }

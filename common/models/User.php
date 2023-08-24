@@ -43,10 +43,6 @@ class User extends ActiveRecord implements IdentityInterface
         return '{{%user}}';
     }
 
-    public $old_password;
-
-    public $new_password;
-
     /**
      * {@inheritdoc}
      */
@@ -65,7 +61,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['role', 'default', 'value' => 1],
             ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
-            [['old_password','new_password'],'required'],
+
 
         ];
     }

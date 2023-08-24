@@ -45,7 +45,7 @@ class SiteController extends Controller
                     ],
 
                     [
-                        'actions' => ['update', 'delete', 'create', 'course', 'view',],
+                        'actions' => ['', 'update', 'delete', 'create', 'restore', 'view',],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

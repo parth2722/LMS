@@ -65,7 +65,7 @@ use yii\helpers\Url;
       <ul class="">
         <a class="" href="/">Home <span class="sr-only"></span></a>
         <a class="" href="<?= Url::to(['/course']) ?>">Course</a>
-        <a class="" href="<?= Url::to(['/change_password']) ?>">Forget-password</a>
+       
         <?php if (Yii::$app->user->isGuest) { ?>
           <a class="" href="<?= Url::to(['/login']) ?>">Login</a>
           <a class="" href="<?= Url::to(['/signup']) ?>">Signup</a>

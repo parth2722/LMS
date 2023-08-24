@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use frontend\models\Course;
 use frontend\models\Module;
 use frontend\models\ModuleSearch;
 use Yii;
@@ -15,19 +16,42 @@ use yii\web\Response;
 class ModuleController extends \yii\web\Controller
 {
 
-        public function behaviors()
+    public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['product'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+
+                    [
+                        'actions' => ['product', 'update', 'delete', 'create', 'restore', 'view',],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
     public function actionIndex()
     {   
@@ -42,16 +66,31 @@ class ModuleController extends \yii\web\Controller
 
     public function actionCreate()
     {
-        $model = new Module();  
+        $model = new Module();
+        
+        // Fetch the list of available courses
+        $courseList = Course::find()->select(['course_name', 'id'])->indexBy('id')->column();
+      
+        if ($model->load(Yii::$app->request->post())) {
+            // Get the selected course_id from the form
+            $selectedCourseId = Yii::$app->request->post('Module')['course_name'];
     
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']); // Redirect to the user listing page
+            // Assign the selected course_id to the model's attribute
+            $model->course_id = $selectedCourseId;
+    
+            if ($model->save()) {
+                return $this->redirect(['index']); // Redirect to the module listing page
+            }
         }
     
         return $this->render('create', [
             'model' => $model,
+            'courseList' => $courseList, // Pass the course list to the view
         ]);
     }
+    
+    
+    
 
     public function actionView($id)
     {
